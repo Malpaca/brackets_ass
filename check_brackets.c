@@ -23,15 +23,14 @@ int main() {
   Stack * opening_brackets_stack = createStack(max_line);
   for (int position = 0; position < input_len; ++position) {
       char next = input_buffer[position];
-      char mask = 96;
       if (next == '(' || next == '[' || next == '{') {
-          Bracket bracket = {(int)((next&mask)>>5)-1, position};
+          Bracket bracket = {(int)(next>>5)-1, position};
           push(opening_brackets_stack, bracket);
       }
 
       if (next == ')' || next == ']' || next == '}') {
           Bracket prev = pop(opening_brackets_stack);
-          if (prev.type != (int)((next&mask)>>5)-1){
+          if (prev.type != (int)(next>>5)-1){
             printf("%d\n",position+1);
             return 0;
           }

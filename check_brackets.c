@@ -38,6 +38,9 @@ int main() {
   }
   // print_stack(opening_brackets_stack);
   // Printing answer, write your code here
-	printf("My result is:Success\n");
+  if (!isEmpty(opening_brackets_stack))
+    printf("%d\n",(pop(opening_brackets_stack).position)+1);
+  else
+	 printf("My result is:Success\n");
   return 0;
 }

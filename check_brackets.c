@@ -24,12 +24,14 @@ int main() {
   for (int position = 0; position < input_len; ++position) {
       char next = input_buffer[position];
       if (next == '(' || next == '[' || next == '{') {
+        //(int)(next>>5)-1 produce 0,1,2 based on which bracket it is.
           Bracket bracket = {(int)(next>>5)-1, position};
           push(opening_brackets_stack, bracket);
       }
 
       if (next == ')' || next == ']' || next == '}') {
           Bracket prev = pop(opening_brackets_stack);
+          //similar to how we stored brackets above, compare the current bracket type with the last stored bracket type.
           if (prev.type != (int)(next>>5)-1){
             printf("%d\n",position+1);
             return 0;
